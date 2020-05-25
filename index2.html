@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    'use strict';
+
+    //なぜgetとsetを使うのか
+    //getterとsetterを通してプロパティの値を参照・書き換えを行うことでアクセス制限をすることができる→簡単にいじれない
+    
+    class Player{
+      //プロパティ参照時に呼び出されるメソッド
+      get messi(){
+        return console.log('やっぱりメッシ');
+      }
+
+      //プロパティに値を代入されたときに呼び出されるメソッド
+      set ronald(cr7){
+        this.cr7 = cr7;
+        console.log(`結局${cr7}`); //ロナウドが代入された時点で呼び出されている
+      }
+    }
+
+    //get()メソッドの呼び出し
+    const player = new Player();
+    player.messi; //やっぱりメッシが表示
+
+    //setメソッドの呼び出し
+    player.ronald = 'ロナウド';
+    console.log(player.cr7); //ロナウドが表示
+
+
+    //---------------------------static----------------------------
+
+    class Soccer {
+      constructor(name){
+        this.name = name
+      }
+
+      //staticをつけることでインスタンスを作らずに呼び出せる
+      //静的メソッド内ではthisは使えない←インスタンスを作らないから
+      static show(name){
+        console.log(`${name}のファンです`)
+      }
+    }
+    Soccer.show('リヴァプール') //リヴァプールのファンですが表示
+  </script>
+</body>
+
+</html>
